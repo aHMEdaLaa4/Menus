@@ -40,7 +40,7 @@ public function store(StoreItemsRequest $request)
         'name' => $request->name,
         'description' => $request->description,
         'price' => $request->price,
-        'image' => 'item/' . $filename, // بدون storage
+        'image' => $filename ? 'item/' . $filename : null, // بدون storage
         'menucategory_id' => $request->category_id,
         'type' => $request->type
     ]);

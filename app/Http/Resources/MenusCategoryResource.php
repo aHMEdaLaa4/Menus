@@ -19,9 +19,23 @@ class MenusCategoryResource extends JsonResource
             'attributes' =>[
                 'name' =>$this->name,
                 'description' =>$this->description,
+                // 'image' => $this->image,
+                'image_url' => $this->image ? asset($this->image) : null, 
             ],
             'relationship' => [
-                'Items' => $this->items,
+                'Items' => $this->items->map(function($item) {
+                    return [
+                        'id' => $item->id,
+                        'name' => $item->name,
+                        'price' => $item->price,
+                        'type' => $item->type,
+                        'is_available' => $item->is_available,
+                        'menucategory_id' => $item->menucategory_id,
+                        // 'image' => $item->image,
+                        'image_url' => $item->image ? asset($item->image) : null,
+                    ];
+                }),
+
             ]
         ];
     }

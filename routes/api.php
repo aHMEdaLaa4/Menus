@@ -52,6 +52,11 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::post('/logout', [AdminsAuthController::class, 'logout'])->name('admins.logout');
 });
 
+Route::prefix('user')->group(function () {
+    Route::get('/menuCategories', [MenusCategoryController::class, 'index']);
+    Route::get('/items', [ItemsController::class, 'index']);
+});
+
 
 
 
