@@ -45,6 +45,7 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::post('/items', [ItemsController::class, 'store']);
     Route::get('/items/{item}', [ItemsController::class, 'show']);
     Route::post('/items/{item}', [ItemsController::class, 'update']);
+    Route::post('/items/{item}/set-availability', [ItemsController::class, 'setAvailability']);
     Route::delete('/items/{item}', [ItemsController::class, 'destroy']);
     
 

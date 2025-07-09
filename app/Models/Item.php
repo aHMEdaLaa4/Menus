@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Item extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'description', 'price', 'menucategory_id', 'image','type'];
+    protected $fillable = ['name', 'description','is_available','price', 'menucategory_id', 'image','type'];
     protected $table = 'items'; // Specify the table name if it differs from the model name
 
     public function getImageUrlAttribute()

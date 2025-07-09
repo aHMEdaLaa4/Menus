@@ -40,11 +40,11 @@ public function store(StoreItemsRequest $request)
         'name' => $request->name,
         'description' => $request->description,
         'price' => $request->price,
+        'is_available' => true,// Assuming you have added this field to the request validation
         'image' => $filename ? 'item/' . $filename : null, // بدون storage
         'menucategory_id' => $request->category_id,
         'type' => $request->type
     ]);
-
     if (!$item) {
         return response()->json([
             'status' => 'Error has occurred...',
@@ -111,7 +111,37 @@ public function update($id, UpdateItemsRequest $request)
     ]);
 }
 
+public function setAvailability($id, Request $request)
+{
+    $item = Item::find($id);
+    $validation = $request->validate([
+        'is_available' => 'required|boolean',
+    ]);
 
+    if (!$item) {
+        return response()->json([
+            'status' => 'Error has occurred...',
+            'message' => 'No items Found',
+            'data' => null
+        ], 500);
+    }
+
+    $item->is_available = $validation['is_available'];
+    $item->save();
+
+    if (!$item->save()) {
+        return response()->json([
+            'status' => 'Error has occurred...',
+            'message' => 'Item availability update failed',
+            'data' => null
+        ], 500);
+    }
+
+    return response()->json([
+        'message' => 'Item availability updated successfully',
+        'data' => new ItemResource($item)
+    ]);
+}
 
 
     public function destroy($id)

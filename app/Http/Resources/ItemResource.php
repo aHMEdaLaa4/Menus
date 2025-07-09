@@ -20,7 +20,7 @@ class ItemResource extends JsonResource
                 'name' => $this->name,
                 'description' => $this->description,
                 'price' => $this->price,
-/*                'image' => $this->image,*/
+                'is_available' => $this->is_available, // Assuming you have added this field to the Item model
                 'image_url' => $this->image ? asset($this->image) : null,
                 'type' => $this->type,
             ],

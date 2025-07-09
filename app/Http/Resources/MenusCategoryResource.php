@@ -31,7 +31,7 @@ class MenusCategoryResource extends JsonResource
                         'type' => $item->type,
                         'is_available' => $item->is_available,
                         'menucategory_id' => $item->menucategory_id,
-                        // 'image' => $item->image,
+                        'is_available'  => $item->is_available, // Assuming you have added this field to the Item model
                         'image_url' => $item->image ? asset($item->image) : null,
                     ];
                 }),
